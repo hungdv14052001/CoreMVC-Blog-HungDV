@@ -1,0 +1,76 @@
+﻿@model CoreMVC_Blog_HungDV.Models.Blog
+@using CoreMVC_Blog_HungDV.Data
+@using CoreMVC_Blog_HungDV.Models
+
+@{
+    ViewData["Title"] = "Blog Edit";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div id="CreateEdit">
+        <div class="CreateEdit-header">
+            <div class="CreateEdit-title">News Blog</div>
+        </div>
+        <div class="CreateEdit-contairner">
+            <label for="" class="lb">Tiêu đề: </label>
+            <input class="txtTieuDe" asp-for="Title" />
+            <span asp-validation-for="Title" class="text-danger txtTieuDe"></span>
+            <label for="" class="lb">Mô tả ngắn:</label>
+            <textarea class="txtMota" asp-for="Des"></textarea>
+            <span asp-validation-for="Des" class="text-danger txtTieuDe"></span>
+            <label for="" class="lb">Chi tiết:</label>
+            <textarea class="txtChitiet" asp-for="Detail"></textarea>
+            <span asp-validation-for="Detail" class="text-danger txtTieuDe"></span>
+            <label for="" class="lb">Hình ảnh:</label>
+            <div class="txtTieuDe">
+                <input type="file" class="input-file" name="myfile">
+            </div>
+            <label for="" class="lb">Vị trí:</label>
+            <div class="txtTieuDe">
+                @foreach (Position postion in ViewData["listPosition"] as List<Position>)
+                {
+                    @Html.CheckBoxFor(model => model.Position[postion.Id - 1])<label>@postion.Name</label>
+                }
+            </div>
+            <label for="" class="lb">Public:</label>
+            <div class="txtTieuDe">
+                @Html.RadioButtonFor(model => model.IsPublic, "True", new { @class = "cbLocation" })
+                Yes
+                @Html.RadioButtonFor(model => model.IsPublic, "False", new { @class = "cbLocation" })
+                No
+            </div>
+            <div class="type-contairner">
+                <div class="type-item">
+                    <label>Loại:</label>
+                </div>
+                <div class="type-item">
+                    <label>Date Public:</label>
+                </div>
+            </div>
+            <div class="type-contairner">
+                <div class="type-item">
+                    @Html.DropDownListFor(model => model.Category, ViewBag.selectList as List<SelectListItem>, new { @class = "txtType" })
+                </div>
+                <div class="type-item">
+                    <input asp-for="DatePublic" class="form-control txtType" />
+                </div>
+            </div>
+            <div class="type-contairner">
+                <div class="type-item">
+
+                </div>
+                <div class="type-item">
+                    <span asp-validation-for="DatePublic" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-CreateEdit">
+            <input type="submit" value="Submit" class="btnSubmit" />
+            <button type="button" class="btnClear">Clear</button>
+        </div>
+    </div>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

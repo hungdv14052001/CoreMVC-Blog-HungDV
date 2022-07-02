@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BlogManagement</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+<body>
+    <div id="Header">
+        <div class="headerLogo">
+            @try
+            {
+                <img class="imgLogo" src="./image/devfast-logo.png" alt="Logo">
+            }
+            catch
+            {
+                <img class="imgLogo" src="./image/devfast-logo.png" alt="Logo">
+            }
+
+        </div>
+        <div class="HeaderContent">
+            Blogmanagement
+        </div>
+    </div>
+    <div id="index-Body">
+        <div id="App-Menu">
+            <div class="Menu-contairner">
+                <a asp-controller="Blog" asp-action="Index" class="menu-item">
+                    <div class="menu-item-contairner">
+                        <div class="menu-item-content">List</div>
+                    </div>
+                </a>
+                <a asp-controller="Blog" asp-action="BlogCreateEdit" asp-route-id="0" class="menu-item">
+                    <div class="menu-item-contairner">
+                        <div class="menu-item-content">New</div>
+                    </div>
+                </a>
+                <a asp-controller="Blog" asp-action="BlogSearchForm" class="menu-item">
+                    <div class="menu-item-contairner">
+                        <div class="menu-item-content">Search</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="Footer">
+        <div class="Footer-content">
+            Copyright © 2021
+        </div>
+        <a class="linkDevFast" href="https://devfast.us/">DevFast</a>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

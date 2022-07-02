@@ -1,0 +1,23 @@
+﻿@model IEnumerable<CoreMVC_Blog_HungDV.Models.Blog>
+@using CoreMVC_Blog_HungDV.Data
+@using CoreMVC_Blog_HungDV.Models
+@{
+    ViewData["Title"] = "Blog Search";
+}
+<div>
+    <div id="Search">
+        <div class="list-header">
+            <div class="list-title">Search Blogs</div>
+        </div>
+        <form asp-controller="Blog" asp-action="BlogSearchForm" method="get">
+            <div class="input-search-contairner">
+                <label class="lb-search">Title: </label>
+                <input placeholder="Title" class="input-search" value="@ViewBag.key" name="keySearch" />
+            </div>
+            <div class="button-search-contairner">
+                <input type="submit" value="Search" class="btnSearch" />
+            </div>
+        </form>
+    </div>
+    @Html.Partial("BlogList")
+</div>

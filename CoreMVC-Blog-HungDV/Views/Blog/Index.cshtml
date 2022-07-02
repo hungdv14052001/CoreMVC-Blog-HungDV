@@ -1,0 +1,11 @@
+﻿@model IEnumerable<CoreMVC_Blog_HungDV.Models.Blog>
+@using CoreMVC_Blog_HungDV.Data
+@using CoreMVC_Blog_HungDV.Models
+
+@{
+    ViewData["Title"] = "Blog List";
+}
+@using (Html.BeginForm("BlogList", "Blog", FormMethod.Get))
+{
+    @Html.Partial("BlogList")
+}
